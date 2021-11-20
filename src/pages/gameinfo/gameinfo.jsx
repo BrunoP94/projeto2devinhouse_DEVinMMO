@@ -5,33 +5,15 @@ import { SlideShow } from "../../components/images/images";
 import { GameText } from "../../components/gametext";
 import { CommentForm } from "../../components/commentform/commentform";
 import { CommentSection } from "../../components/comments/comments";
+import { getGameInfo } from "../../services/fetch-service";
 
 export function GameInfo () {
     const { id } = useParams();
     let [gameInfo, setGameInfo] = useState([]);
 
-    useEffect(()=>{async function getGameInfo() {
-        try {
-          const responseGameInfo = await fetch(
-            `https://mmo-games.p.rapidapi.com/game?id=${id}`,
-            {
-              method: "GET",
-              headers: {
-                "x-rapidapi-host": "mmo-games.p.rapidapi.com",
-                "x-rapidapi-key":
-                  "b3dc83721amsh15889353fe705b6p14b454jsndfbfebd40617",
-              },
-            }
-          );
-          setGameInfo( gameInfo = await responseGameInfo.json())
-          
-                    
-          } catch (erro) {
-          console.log(erro);
-        }
-      }
-      getGameInfo();
-      },[])
+    useEffect(()=>{
+      getGameInfo(id).then(setGameInfo)
+    },[])
 
       
     if(gameInfo.screenshots){

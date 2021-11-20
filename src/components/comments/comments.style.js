@@ -25,5 +25,17 @@ align-items: center;
 export const LikesButton = styled.button`
 background-color: transparent;
 border: 0px solid transparent;
+color:${({ theme }) => theme.color.like};
+`;
+
+export const DisLikesButton = styled.button`
+background-color: transparent;
+border: 0px solid transparent;
+color:${({ theme }) => theme.color.dislike};
+`;
+
+export const LikeNmbr = styled.p`
+color: ${(props)=>props.likes > 0 ? ({ theme }) => theme.color.like : ({ theme }) => theme.color.dislike};
+font-weight: bold;
 `;
 

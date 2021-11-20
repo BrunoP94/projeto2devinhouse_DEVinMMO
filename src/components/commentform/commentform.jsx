@@ -2,16 +2,18 @@ import React, { useEffect } from "react";
 import * as Yup from "yup";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { NameEmailCard, StyleErrorMessage, CommentCard, SubmitButton } from "./commentform.style";
-import { useCommentList, CheckLocalStorage } from "../../context";
+import { useCommentList, CheckCommentLocalStorage } from "../../context";
 
 export function CommentForm( props ) {  
 
-   let {comments, CheckLocalStorage } = useCommentList(); 
+   let {comments, CheckCommentLocalStorage, SaveCommentLocalStorage} = useCommentList(); 
 
     useEffect(()=>(
-        CheckLocalStorage(props.pageid)
+        CheckCommentLocalStorage(props.pageid)
         
     ),[])
+
+
     
       return (
         <>
@@ -25,11 +27,17 @@ export function CommentForm( props ) {
             name:"",
             email:"",
             comment:"",
+            likes:"0"
         }}
         onSubmit={(values, {resetForm})=>{
             resetForm()
-            CheckLocalStorage (props.pageid)
-            }}>
+            SaveCommentLocalStorage (props.pageid, values)
+            window.location.reload()
+            }}
+        validateOnChange={false}
+        validateOnBlur={false}
+        validateOnSubmit={true}>
+            
             {(formProps)=>{
                 const {errors} = formProps;
                 return(
@@ -49,6 +57,7 @@ export function CommentForm( props ) {
                 <Field className="commField" name ="comment" type="textarea" placeholder="Comentario"/>
                 <StyleErrorMessage>{errors.comment}</StyleErrorMessage>
                 </CommentCard>
+                <Field type="hidden" name="likes" /> 
                 <SubmitButton type="submit">Enviar</SubmitButton>
             </Form>
         )}}

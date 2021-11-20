@@ -1,18 +1,20 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { PageHeader } from './pageheader.style'
+import { PageHeader, PageHeaderButton, PageHeaderButtonEncapsulation } from './pageheader.style'
+import { useCommentList } from '../../context';
 
 export function Header (){
-
+    let { changeThemeLS } = useCommentList(); 
     let history = useHistory();
     return(
         
         <PageHeader>
             <h2>DEVinMMO</h2>
-            <div>
-                <button onClick={()=>(history.push('/'))}>Games</button>
-                <button onClick={()=>(history.push('/news'))}>Notícias</button>
-            </div>
+            <PageHeaderButtonEncapsulation>
+                <PageHeaderButton onClick={()=>(history.push('/'))}>Games</PageHeaderButton>
+                <PageHeaderButton onClick={()=>(history.push('/news'))}>Notícias</PageHeaderButton>
+                <PageHeaderButton onClick={()=>changeThemeLS()}>Tema</PageHeaderButton>
+            </PageHeaderButtonEncapsulation>
         </PageHeader>
         
     )

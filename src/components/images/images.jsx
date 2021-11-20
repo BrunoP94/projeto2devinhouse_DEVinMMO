@@ -8,15 +8,15 @@ export function SlideShow( {SlideImages} ) {
       return (
         <>
         <Slide easing="ease">
-          {SlideImages.map((item)=>(
-        <EachSlide>
+          {SlideImages.map((item, index)=>(
+        <EachSlide key={index}>
           <ImageSlide src={item.image} key={item.id}/>
             </EachSlide>
             ))}         
             </Slide>
             <SmallImagesRow >
-            {SlideImages.map((item)=>(
-              <SmallImage src= {item.image} key={item.id}/>
+            {SlideImages.map((item, index)=>(
+              <SmallImage key={index} src= {item.image} key={item.id}/>
             ))}         
             </SmallImagesRow>
             

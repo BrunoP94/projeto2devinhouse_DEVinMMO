@@ -1,4 +1,20 @@
-# Getting Started with Create React App
+# Projeto 2 DevInHouse
+## DEVInMMO
+
+Página de jogos MMO contendo detalhes técnicos de diversos jogos, r]informações osbre requisitos de sistema e noticias sobre o mundo gamer.
+
+## Extensões 
+
+Para rodar devidamente a página, são necessárias as extensões:
+- react-router-dom;
+- formik;
+- yup;
+- styled-components;
+- [react-slideshow-image] (https://react-slideshow.herokuapp.com/)
+
+
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

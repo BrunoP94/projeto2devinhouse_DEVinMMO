@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Card = styled.div`
     width: 300px;
     height: 420px;
-    background-color: rgb(220,220,220);
+    background-color: ${({ theme }) => theme.color.card};
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -29,10 +29,28 @@ export const PlataformText = styled.span`
 `;
 
 export const CardText = styled.p`
-    width: 100%;
+    
+    width: 95%;
     height: 180px;
     overflow-y: scroll;
     text-overflow: ellipsis;
+        &::-webkit-scrollbar {
+        width: 10px;
+        }
+        
+        &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey; 
+        border-radius: 10px;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+        background: rgb(100, 100, 100); 
+        border-radius: 10px;
+        }
+        
+        &::-webkit-scrollbar-thumb:hover {
+        background:rgb(54, 56, 58); 
+        }
 
 `;
 
@@ -42,6 +60,14 @@ export const CardGameInfo = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+`;
+
+export const CardEncapsulation = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; 
+    gap: 10px;
+    justify-content: space-evenly;
 `;
 
 

@@ -4,19 +4,19 @@ import { GameDetail } from './pages/gamedetail'
 import { GameNews } from './pages/news/gamenews'
 import { GameInfo } from './pages/gameinfo/gameinfo'
 import {ContextProvider} from './context'
+import { GlobalStyles } from './styles/GlobalStyles'
 
 function App() {
-
-  
   return (
     <ContextProvider>
-    <BrowserRouter>
-    <Switch>
-      <Route exact path="/" component={GameDetail}/>
-      <Route exact path="/news" component={GameNews}/>
-      <Route path="/:id" component={GameInfo}/>
-    </Switch>
-    </BrowserRouter>
+      <GlobalStyles />
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={GameDetail} />
+          <Route exact path="/news" component={GameNews} />
+          <Route path="/:id" component={GameInfo} />
+        </Switch>
+      </BrowserRouter>
     </ContextProvider>
   );
 }

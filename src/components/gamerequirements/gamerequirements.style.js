@@ -5,6 +5,7 @@ width: 85%;
 padding: 10px;
 background: #D6D6D6;
 border: 2px solid #333333;
+color: black;
 `;
 
 export const ReqEncapsulation = styled.div`

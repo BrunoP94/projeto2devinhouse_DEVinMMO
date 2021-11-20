@@ -1,39 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import {GameCard} from '../../components/card'
 import {Header} from '../../components/pageheader'
+import { getGameList } from '../../services/fetch-service';
+import { useCommentList } from '../../context';
+import { SearchBar } from '../../components/searchbar';
+import { CardEncapsulation } from '../../components/card/card.styles';
 
 export function GameDetail () {
 
-  let [gameList, setGameList] = useState([]);
+  let {gameList, setGameList, searchTerm} = useCommentList()
 
-useEffect(()=>{async function getGameList() {
-    try {
-      const responseGameList = await fetch(
-        "https://mmo-games.p.rapidapi.com/games",
-        {
-          method: "GET",
-          headers: {
-            "x-rapidapi-host": "mmo-games.p.rapidapi.com",
-            "x-rapidapi-key":
-              "b3dc83721amsh15889353fe705b6p14b454jsndfbfebd40617",
-          },
-        }
-      );
-      setGameList( gameList = await responseGameList.json())
-      } catch (erro) {
-      console.log(erro);
-    }
-  }
-  getGameList();
-  },[])
+useEffect (()=>{
+  getGameList().then(setGameList);
+},[])
 
   return (
     <>
       <Header />
       <h1>Lista de Games</h1>
-      <input className="searchBar"></input>
-      <div className="cardlist">
-        {gameList.map((item) => (
+      <SearchBar />
+      <CardEncapsulation>
+        {
+        gameList.filter((val)=>{
+          if(searchTerm =="") {
+            return val
+          } else if (val.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+            return val
+          }
+        }).map((item) => (
           <GameCard
             key={item.id}
             title={item.title}
@@ -43,7 +37,7 @@ useEffect(()=>{async function getGameList() {
             id={item.id}
           />
         ))}
-      </div>
+      </CardEncapsulation>
     </>
   );
 
