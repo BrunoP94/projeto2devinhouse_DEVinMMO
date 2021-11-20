@@ -10,7 +10,7 @@ Para rodar devidamente a página, são necessárias as extensões:
 - formik;
 - yup;
 - styled-components;
-- [react-slideshow-image] (https://react-slideshow.herokuapp.com/)
+- [react-slideshow-image](https://react-slideshow.herokuapp.com/)
 
 
 
